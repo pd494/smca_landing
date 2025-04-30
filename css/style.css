@@ -1,0 +1,100 @@
+/* ---------- THEME VARIABLES ---------- */
+:root{
+    --bg:#fdfcf9;         /* Theme A bg (off-white) */
+    --fg:#000;            /* Theme A text / cursor */
+  }
+  
+  /* Theme B overrides */
+  body.theme-alt{
+    --bg:#000000;         /* Black background for alt theme */
+    --fg:#d6cfbc;         /* Light text for dark theme */
+  }
+  
+  /* Add smooth transition between themes */
+  body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  /* Ensure all elements transition smoothly */
+  * {
+    transition: color 0.5s ease, background-color 0.5s ease, opacity 0.5s ease;
+  }
+  
+  /* ---------- RESET ---------- */
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    height:100vh;
+    overflow:hidden;
+    cursor:none;
+  }
+
+  .contact-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+  }
+  
+  /* ---------- LAYOUT ---------- */
+  .container{display:flex;flex-direction:column;height:100vh;padding:20px;position:relative}
+  .logo-container{flex:1;display:flex;justify-content:center;align-items:center;perspective:1200px}
+  
+  /* ---------- LOGO ---------- */
+  .logo{
+    width:150px;
+    height:200px;
+    transform-style:preserve-3d;will-change:transform;
+    cursor:grab;user-select:none;
+    transition:transform .05s linear;
+  }
+  .logo:active{cursor:grabbing}
+  #logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 0.5s;
+}
+body.theme-alt #logo-img {
+  filter: brightness(0) invert(1);
+}
+  
+  /* ---------- FOOTER & LABEL ---------- */
+  .footer,
+  .info_link_image{transition:opacity .3s}
+  .footer{display:flex;justify-content:space-between;padding:20px 0;margin-bottom:20px;font-size:14px}
+  .footer-links{display:flex;align-items:center}
+  .footer-link{margin-right:8px;text-decoration:none;color:var(--fg);opacity:.7;transition:opacity .3s;cursor:none}
+.footer-link[href="contact.html"] { color: #000 !important; opacity: 1; }
+  .footer-link:hover{opacity:1}
+  .separator{margin:0 8px;opacity:.7}
+  .footer-description,.footer-location{opacity:.7;line-height:1.4;color:#000;}
+  .footer-description{max-width:400px}
+  
+  /* Theme B hides all footer text & label */
+  body.theme-alt .footer,
+  body.theme-alt .info_link_image{opacity:0;pointer-events:none}
+  
+  /* ---------- CUSTOM CURSOR ---------- */
+  .cursor-dot{
+    position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;
+    background:var(--fg);
+    pointer-events:none;z-index:9999;transition:transform .1s ease
+  }
+  a:hover ~ .cursor-dot,.logo:hover ~ .cursor-dot{transform:scale(1.5)}
+  
+  /* ---------- CLICK PULSE ---------- */
+  .pulse{animation:pulse .3s ease-out}
+  @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(2)}100%{transform:scale(1)}}
+  
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:768px){.footer{flex-direction:column;gap:20px}}
+  
